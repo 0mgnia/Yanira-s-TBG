@@ -1,0 +1,186 @@
+#include<iostream>
+using namespace std;
+string inventory[5]; //global variable
+int health = 100;
+int Crawlerhealth = 400;
+//function declarartion
+void BattleSystem();
+void MonsterGen();
+void BossFight();
+void ItemDropper();
+
+int main() {
+	string input = "potato";
+	int location = 1;
+	bool hasWon = false;
+
+	srand(time(NULL));
+	cout << "You wake up in a strange room on a old bed. The air is thick and suffocating." << endl;
+	cout << "You stand up and look around the room. There is a small window." << endl;
+	cout << endl << endl;
+	cout << "The room has old paint peeling off the walls. There is a shelf with some old boxes on it." << endl;
+	cout << endl << endl;
+	cout << endl << endl;
+	cout << "The door has chains on it. You need something to break it with." << endl;
+	cout << endl << endl;
+	cout << "You push the books off the shelf which reveals bolt cutters." << endl;
+
+	while (input != "quit" && hasWon == false > 0) { //GAME LOOP
+		cout << "Your inventory; ";
+		for (int i = 0; i < 5; i++) //print inventory
+			cout << inventory[i] << " ";
+		cout << endl << endl;
+		switch (location) {
+
+		case 1:
+			MonsterGen();
+			ItemDropper();
+				cout << "You got the bolt cutters." << endl;
+				inventory[0] = "bolt cutters";
+				
+				cout << "You used the bolt cutters on the chain." << endl;
+				cout << "You keep the bolt cutters just in case." << endl;
+				cout << "You can go to the other room (south)" << endl;
+				cin >> input;
+				if (input == "south")
+					location = 2;
+				break;
+		case 2:
+			MonsterGen();
+			ItemDropper();
+			cout << "This room is dim ." << endl;
+			cout << "You can go to the other room (west)" << endl;
+			cin >> input;
+			if (input == "west")
+				location = 3;
+			break;
+			
+
+		case 3:
+			MonsterGen();
+			ItemDropper();
+			cout << "This room has two large windows that show a forest." << endl;
+			cout << "You can head to the other room (north)." << endl;
+			cin >> input;
+			if (input == "north")
+				location = 4;
+
+			break;
+
+		case 4:
+			MonsterGen();
+			cout << "A long hallway." << endl;
+			cout << "You can head to the other room (east)." << endl;
+			cin >> input;
+			if (input == "east")
+				location = 5;
+			break;
+
+		case 5:
+			MonsterGen();
+			ItemDropper();
+			cout << "This room is dim and has zombies." << endl;
+			cout << "You can head to the other room (west)." << endl;
+			cin >> input;
+			if (input == "west")
+				location = 6;
+			break;
+
+		case 6:
+			MonsterGen();
+			ItemDropper();
+			cout << "This room has a gun." << endl;
+			cout << "You can head to the other room (north)." << endl;
+			cin >> input;
+			if (input == "north")
+				location = 7;
+			break;
+
+		case 7:
+			MonsterGen();
+			ItemDropper();
+			cout << "This room has herbs." << endl;
+			cout << "You can head to the other room (south)." << endl;
+			cin >> input;
+			if (input == "south")
+				location = 8;
+			break;
+		case 8:
+			MonsterGen();
+			ItemDropper();
+			cout << "This room has ammo." << endl;
+			cout << "You can head to the other room (north)." << endl;
+			cin >> input;
+			if (input == "north")
+				location = 9;
+			break;
+
+		case 9:
+			MonsterGen();
+			ItemDropper();
+			cout << "This is a red bright room." << endl;
+			cout << "You can head back to the other room (west)." << endl;
+			cin >> input;
+			if (input == "west")
+				location = 10;
+			break;
+
+		case 10:
+			MonsterGen();
+			ItemDropper();
+			if (health < 0) {
+				cout << "you died." << endl;
+				break;
+
+			}
+			cout << "boss battle, a BIG crawler." << endl;
+			cout << "You can head to the other room (south)." << endl;
+			cin >> input;
+			if (input == "south") {
+				location = 4;
+				break;
+			}
+			cout << "You made it to the last room " << endl;
+			hasWon = true; //cause game loop to quit
+			break;
+		}//end of switch
+
+	}//end of game loop
+
+	if (hasWon == true) {
+		cout << "The game is over" << endl;
+		cout << "Thanks for playing, YOU WIN!" << endl;
+	}
+
+}//end of main
+
+//funciton definitions go here!
+void MonsterGen() {
+	int num = rand() % 100;
+	if (num < 5)
+		cout << "A zombie appeared!" << endl;
+	else if (num < 55)
+		cout << "A crawler appeared!" << endl;
+	else if (num < 75) 
+		cout << "A spider appears!" << endl;
+	}
+
+void ItemDropper() {
+	int num = rand() % 100;
+	if (num < 20) {
+		cout << "you got a gun." << endl;
+		inventory[2] = "gun";
+	}
+	else if (num < 50) {
+		cout << "you got a herb." << endl;
+		inventory[3] = "herb";
+	}
+	else if (num < 75) {
+		cout << "you got a burger." << endl;
+		inventory[4] = "burger";
+	}
+	else {
+		cout << "you get nothing." << endl;
+
+	}
+}
