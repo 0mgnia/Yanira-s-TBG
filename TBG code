@@ -9,6 +9,8 @@ void MonsterGen();
 void BossFight();
 void ItemDropper();
 
+
+
 int main() {
 	string input = "potato";
 	int location = 1;
@@ -33,8 +35,6 @@ int main() {
 		switch (location) {
 
 		case 1:
-			MonsterGen();
-			ItemDropper();
 				cout << "You got the bolt cutters." << endl;
 				inventory[0] = "bolt cutters";
 				
@@ -46,9 +46,7 @@ int main() {
 					location = 2;
 				break;
 		case 2:
-			MonsterGen();
-			ItemDropper();
-			cout << "This room is dim ." << endl;
+			cout << "This room is very dim, theres not much in here except for spider webs.." << endl;
 			cout << "You can go to the other room (west)" << endl;
 			cin >> input;
 			if (input == "west")
@@ -69,8 +67,9 @@ int main() {
 
 		case 4:
 			MonsterGen();
-			cout << "A long hallway." << endl;
-			cout << "You can head to the other room (east)." << endl;
+			cout << "This room has a very long hallway with candles against the wall." << endl;
+			cout << "Theres a door at the very end of the hallway." << endl;
+			cout << "You can head to the other room (east)" << endl;
 			cin >> input;
 			if (input == "east")
 				location = 5;
@@ -89,7 +88,7 @@ int main() {
 		case 6:
 			MonsterGen();
 			ItemDropper();
-			cout << "This room has a gun." << endl;
+			cout << "This room has old files of paper everywhere." << endl;
 			cout << "You can head to the other room (north)." << endl;
 			cin >> input;
 			if (input == "north")
@@ -99,7 +98,8 @@ int main() {
 		case 7:
 			MonsterGen();
 			ItemDropper();
-			cout << "This room has herbs." << endl;
+			cout << "This room has some herbs growing near a window." << endl;
+			cout << "You can use these for healing" << endl;
 			cout << "You can head to the other room (south)." << endl;
 			cin >> input;
 			if (input == "south")
@@ -133,7 +133,7 @@ int main() {
 				break;
 
 			}
-			cout << "boss battle, a BIG crawler." << endl;
+			cout << "boss battle, a BIG crawler that is very hungry." << endl;
 			cout << "You can head to the other room (south)." << endl;
 			cin >> input;
 			if (input == "south") {
@@ -158,11 +158,11 @@ int main() {
 void MonsterGen() {
 	int num = rand() % 100;
 	if (num < 5)
-		cout << "A zombie appeared!" << endl;
+		cout << "A zombie appeared" << endl;
 	else if (num < 55)
-		cout << "A crawler appeared!" << endl;
+		cout << "A crawler appeared" << endl;
 	else if (num < 75) 
-		cout << "A spider appears!" << endl;
+		cout << "A spider appears" << endl;
 	}
 
 void ItemDropper() {
@@ -176,8 +176,8 @@ void ItemDropper() {
 		inventory[3] = "herb";
 	}
 	else if (num < 75) {
-		cout << "you got a burger." << endl;
-		inventory[4] = "burger";
+		cout << "you got ammo." << endl;
+		inventory[4] = "ammo";
 	}
 	else {
 		cout << "you get nothing." << endl;
